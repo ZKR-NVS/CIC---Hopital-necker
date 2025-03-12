@@ -1,54 +1,67 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[80vh] bg-primary">
-        <div className="absolute inset-0 bg-black/40 z-10" />
-        <Image
-          src="/images/hospital-facade.jpg"
-          alt="Hôpital Necker"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="relative z-20 container mx-auto px-4 h-full flex items-center">
-          <div className="max-w-3xl text-white">
-            <h1 className="text-5xl font-bold mb-6">
-              Centre d'Investigation Clinique
-            </h1>
-            <h2 className="text-3xl mb-8">Hôpital Necker-Enfants Malades</h2>
-            <p className="text-xl mb-8">
-              Excellence en recherche clinique et innovation médicale
-            </p>
-            <Link
-              href="/contact"
-              className="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md text-lg font-semibold transition-colors"
-            >
-              Prendre rendez-vous
-            </Link>
-          </div>
-        </div>
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-90" />
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 text-center text-white px-4"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            Hôpital Necker
+          </h1>
+          <p className="text-xl md:text-2xl mb-8">
+            Excellence en soins de santé
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold text-lg"
+          >
+            Prendre rendez-vous
+          </motion.button>
+        </motion.div>
       </section>
 
       {/* Services Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-16"
+          >
             Nos Services
-          </h2>
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            {['Urgences', 'Consultations', 'Chirurgie'].map((service, index) => (
+              <motion.div
+                key={service}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="text-primary mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-              </div>
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{service}</h3>
+                <p className="text-gray-600">
+                  Des soins de qualité pour votre santé et votre bien-être.
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -57,34 +70,27 @@ export default function Home() {
       {/* Contact Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 text-gray-800">
-              Contactez-nous
-            </h2>
-            <p className="text-xl text-gray-600 mb-12">
-              Notre équipe est à votre disposition pour répondre à vos questions
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <h2 className="text-4xl font-bold mb-8">Contactez-nous</h2>
+            <p className="text-gray-600 mb-8">
+              Notre équipe est à votre disposition pour répondre à toutes vos questions.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-4">Coordonnées</h3>
-                <p className="text-gray-600">
-                  149 rue de Sèvres<br />
-                  75743 Paris Cedex 15<br />
-                  Tél : 01 44 49 40 00
-                </p>
-              </div>
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-4">Horaires</h3>
-                <p className="text-gray-600">
-                  Lundi - Vendredi : 9h00 - 17h00<br />
-                  Consultations sur rendez-vous
-                </p>
-              </div>
-            </div>
-          </div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold text-lg"
+            >
+              Nous contacter
+            </motion.button>
+          </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   )
 }
 
