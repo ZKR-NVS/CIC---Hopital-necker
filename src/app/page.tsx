@@ -7,56 +7,89 @@ import dynamic from 'next/dynamic';
 const HeroBackground = dynamic(() => import('@/components/icons/HeroBackground'), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-600" />
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-800" />
   ),
 });
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <HeroBackground className="w-full h-full" />
         </div>
         <div className="container mx-auto px-4 z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-white max-w-3xl"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="max-w-4xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Hôpital Necker
-            </h1>
-            <p className="text-xl md:text-2xl mb-8">
-              Excellence médicale et innovation au service de la santé
-            </p>
-            <Link
-              href="/services"
-              className="bg-white text-primary-600 px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition-colors"
+            <motion.div variants={fadeInUp} className="mb-8">
+              <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">
+                Centre d'excellence médicale
+              </span>
+            </motion.div>
+            <motion.h1 
+              variants={fadeInUp}
+              className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight"
             >
-              Découvrir nos services
-            </Link>
+              Innovation et expertise au service de votre santé
+            </motion.h1>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-xl md:text-2xl text-blue-100 mb-12 max-w-2xl"
+            >
+              L'Hôpital Necker combine recherche de pointe et soins personnalisés pour offrir une médecine d'excellence.
+            </motion.p>
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
+              <Link
+                href="/services"
+                className="bg-white text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-all transform hover:scale-105"
+              >
+                Découvrir nos services
+              </Link>
+              <Link
+                href="/contact"
+                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 transition-all"
+              >
+                Nous contacter
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Nos Services
+              Une approche globale de la santé
             </h2>
-            <p className="text-xl text-gray-600">
-              Des soins de qualité adaptés à vos besoins
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Des services spécialisés et des équipements de dernière génération pour des soins personnalisés
             </p>
           </motion.div>
 
@@ -64,33 +97,40 @@ export default function Home() {
             {[
               {
                 title: 'Urgences',
-                description: 'Prise en charge 24/7 des urgences médicales',
+                description: 'Prise en charge 24/7 des urgences médicales avec une équipe hautement qualifiée',
                 icon: '🏥',
+                color: 'bg-blue-50 text-blue-600',
               },
               {
                 title: 'Spécialités',
-                description: 'Large gamme de spécialités médicales',
+                description: 'Large gamme de spécialités médicales et chirurgicales de pointe',
                 icon: '👨‍⚕️',
+                color: 'bg-green-50 text-green-600',
               },
               {
                 title: 'Recherche',
-                description: 'Centre de recherche médicale de pointe',
+                description: 'Centre de recherche médicale innovant pour les traitements de demain',
                 icon: '🔬',
+                color: 'bg-purple-50 text-purple-600',
               },
             ].map((service, index) => (
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
               >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <div className={`${service.color} w-16 h-16 rounded-xl flex items-center justify-center text-3xl mb-6`}>
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {service.title}
                 </h3>
-                <p className="text-gray-600">{service.description}</p>
+                <p className="text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -98,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20">
+      <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -107,17 +147,17 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Contactez-nous
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Une équipe à votre écoute
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Notre équipe est à votre disposition pour répondre à vos questions
+            <p className="text-xl text-gray-600 mb-12">
+              Notre équipe médicale et administrative est à votre disposition pour répondre à toutes vos questions et vous accompagner dans votre parcours de soins.
             </p>
             <Link
               href="/contact"
-              className="bg-primary-600 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-primary-700 transition-colors"
+              className="inline-block bg-blue-900 text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-blue-800 transition-all transform hover:scale-105"
             >
-              Nous contacter
+              Prendre rendez-vous
             </Link>
           </motion.div>
         </div>

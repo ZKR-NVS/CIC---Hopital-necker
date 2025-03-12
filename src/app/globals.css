@@ -14,15 +14,15 @@
 
 @layer components {
   .btn {
-    @apply px-6 py-3 rounded-full font-medium transition-colors duration-200;
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700;
+    @apply bg-blue-900 text-white hover:bg-blue-800 hover:scale-105;
   }
 
   .btn-secondary {
-    @apply bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50;
+    @apply bg-white text-blue-900 border-2 border-blue-900 hover:bg-blue-50;
   }
 
   .section-title {
@@ -30,11 +30,11 @@
   }
 
   .section-subtitle {
-    @apply text-xl text-gray-600 mb-8;
+    @apply text-xl text-gray-600 max-w-2xl mx-auto;
   }
 
   .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1;
   }
 
   .input-field {
@@ -42,20 +42,39 @@
   }
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
+/* Animations personnalisées */
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Styles de défilement */
