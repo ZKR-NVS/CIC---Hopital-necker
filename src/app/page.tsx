@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { ArrowRightIcon, HeartIcon, UserGroupIcon, BeakerIcon } from '@heroicons/react/24/outline';
 
 const HeroBackground = dynamic(() => import('@/components/icons/HeroBackground'), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-800" />
+    <div className="absolute inset-0 bg-gradient-to-br from-primary-900 to-primary-800" />
   ),
 });
 
@@ -41,7 +42,7 @@ export default function Home() {
             className="max-w-4xl"
           >
             <motion.div variants={fadeInUp} className="mb-8">
-              <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">
+              <span className="text-primary-200 font-semibold tracking-wider uppercase text-sm bg-white/10 px-4 py-2 rounded-full">
                 Centre d'excellence médicale
               </span>
             </motion.div>
@@ -53,20 +54,21 @@ export default function Home() {
             </motion.h1>
             <motion.p 
               variants={fadeInUp}
-              className="text-xl md:text-2xl text-blue-100 mb-12 max-w-2xl"
+              className="text-xl md:text-2xl text-primary-100 mb-12 max-w-2xl"
             >
               L'Hôpital Necker combine recherche de pointe et soins personnalisés pour offrir une médecine d'excellence.
             </motion.p>
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
               <Link
                 href="/services"
-                className="bg-white text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-all transform hover:scale-105"
+                className="btn btn-primary flex items-center gap-2"
               >
                 Découvrir nos services
+                <ArrowRightIcon className="w-5 h-5" />
               </Link>
               <Link
                 href="/contact"
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 transition-all"
+                className="btn btn-secondary"
               >
                 Nous contacter
               </Link>
@@ -85,10 +87,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="section-title">
               Une approche globale de la santé
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="section-subtitle">
               Des services spécialisés et des équipements de dernière génération pour des soins personnalisés
             </p>
           </motion.div>
@@ -98,20 +100,20 @@ export default function Home() {
               {
                 title: 'Urgences',
                 description: 'Prise en charge 24/7 des urgences médicales avec une équipe hautement qualifiée',
-                icon: '🏥',
-                color: 'bg-blue-50 text-blue-600',
+                icon: HeartIcon,
+                color: 'bg-primary-50 text-primary-600',
               },
               {
                 title: 'Spécialités',
                 description: 'Large gamme de spécialités médicales et chirurgicales de pointe',
-                icon: '👨‍⚕️',
-                color: 'bg-green-50 text-green-600',
+                icon: UserGroupIcon,
+                color: 'bg-accent-50 text-accent-600',
               },
               {
                 title: 'Recherche',
                 description: 'Centre de recherche médicale innovant pour les traitements de demain',
-                icon: '🔬',
-                color: 'bg-purple-50 text-purple-600',
+                icon: BeakerIcon,
+                color: 'bg-secondary-50 text-secondary-600',
               },
             ].map((service, index) => (
               <motion.div
@@ -120,10 +122,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+                className="card p-8"
               >
-                <div className={`${service.color} w-16 h-16 rounded-xl flex items-center justify-center text-3xl mb-6`}>
-                  {service.icon}
+                <div className={`${service.color} w-16 h-16 rounded-xl flex items-center justify-center mb-6`}>
+                  <service.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {service.title}
@@ -138,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-gradient-to-br from-primary-50 to-primary-100">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -147,17 +149,18 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="section-title">
               Une équipe à votre écoute
             </h2>
-            <p className="text-xl text-gray-600 mb-12">
+            <p className="section-subtitle mb-12">
               Notre équipe médicale et administrative est à votre disposition pour répondre à toutes vos questions et vous accompagner dans votre parcours de soins.
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-blue-900 text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-blue-800 transition-all transform hover:scale-105"
+              className="btn btn-primary flex items-center gap-2 mx-auto w-fit"
             >
               Prendre rendez-vous
+              <ArrowRightIcon className="w-5 h-5" />
             </Link>
           </motion.div>
         </div>
