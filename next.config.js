@@ -1,10 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
+  reactStrictMode: true,
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
-  trailingSlash: true,
+  images: {
+    domains: ['localhost'],
+  },
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion'],
+  },
 }
 
 module.exports = nextConfig 

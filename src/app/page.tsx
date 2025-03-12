@@ -2,7 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import HeroBackground from '@/components/icons/HeroBackground';
+import dynamic from 'next/dynamic';
+
+const HeroBackground = dynamic(() => import('@/components/icons/HeroBackground'), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-600" />
+  ),
+});
 
 export default function Home() {
   return (
@@ -16,7 +23,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             className="text-white max-w-3xl"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -41,7 +48,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -75,7 +82,7 @@ export default function Home() {
                 key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
@@ -96,7 +103,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center"
           >

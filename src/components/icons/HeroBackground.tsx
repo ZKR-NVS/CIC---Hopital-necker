@@ -15,14 +15,9 @@ const HeroBackground = ({ className = "w-full h-full" }) => (
     </defs>
     <rect width="100%" height="100%" fill="url(#gradient)" />
     <path
-      d="M0 400C0 400 200 300 400 300C600 300 800 500 1000 500C1200 500 1440 400 1440 400V800H0V400Z"
+      d="M0 400C0 400 400 300 800 300C1200 300 1440 400 1440 400V800H0V400Z"
       fill="white"
       fillOpacity="0.1"
-    />
-    <path
-      d="M0 400C0 400 200 500 400 500C600 500 800 300 1000 300C1200 300 1440 400 1440 400V800H0V400Z"
-      fill="white"
-      fillOpacity="0.05"
     />
   </svg>
 );
