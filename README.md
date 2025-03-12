@@ -1,19 +1,13 @@
-# Site Web Hôpital Necker
+# Hôpital Necker - Site Web
 
-Ce projet est un site web moderne pour l'Hôpital Necker, développé avec Next.js et Tailwind CSS.
+Site web professionnel pour l'Hôpital Necker, développé avec Next.js et Tailwind CSS.
 
 ## Technologies utilisées
 
 - Next.js 14
-- React
 - Tailwind CSS
 - Framer Motion
 - TypeScript
-
-## Prérequis
-
-- Node.js (version 18 ou supérieure)
-- npm ou yarn
 
 ## Installation
 
@@ -26,79 +20,62 @@ cd hopital-necker
 2. Installez les dépendances :
 ```bash
 npm install
-# ou
-yarn install
 ```
 
-3. Créez un fichier `.env.local` à la racine du projet et ajoutez les variables d'environnement nécessaires :
-```env
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=votre_clé_api
-```
-
-4. Lancez le serveur de développement :
+3. Lancez le serveur de développement :
 ```bash
 npm run dev
-# ou
-yarn dev
 ```
 
-5. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+4. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+
+## Commandes Git
+
+Pour mettre à jour le projet sur GitHub :
+
+```bash
+# Ajouter tous les fichiers modifiés
+git add .
+
+# Créer un commit avec un message descriptif
+git commit -m "Mise à jour du site web : ajout des pages Services, À propos et Contact"
+
+# Pousser les modifications vers GitHub
+git push origin main
+```
 
 ## Structure du projet
 
 ```
 src/
-├── app/
-│   ├── page.tsx           # Page d'accueil
-│   ├── services/          # Page des services
-│   ├── a-propos/         # Page À propos
-│   ├── contact/          # Page de contact
-│   └── globals.css       # Styles globaux
-├── components/           # Composants réutilisables
-└── public/              # Assets statiques
+  ├── app/
+  │   ├── page.tsx           # Page d'accueil
+  │   ├── services/
+  │   │   └── page.tsx      # Page des services
+  │   ├── a-propos/
+  │   │   └── page.tsx      # Page À propos
+  │   └── contact/
+  │       └── page.tsx      # Page de contact
+  ├── components/           # Composants réutilisables
+  └── styles/              # Styles globaux
 ```
 
-## Commandes Git utiles
+## Fonctionnalités
 
-Pour contribuer au projet :
-
-1. Créez une nouvelle branche :
-```bash
-git checkout -b feature/nom-de-la-feature
-```
-
-2. Ajoutez vos modifications :
-```bash
-git add .
-```
-
-3. Committez vos changements :
-```bash
-git commit -m "Description des modifications"
-```
-
-4. Poussez vers GitHub :
-```bash
-git push origin feature/nom-de-la-feature
-```
-
-## Déploiement
-
-Le site est configuré pour être déployé sur Vercel. Pour déployer :
-
-1. Connectez votre dépôt GitHub à Vercel
-2. Configurez les variables d'environnement dans les paramètres du projet Vercel
-3. Vercel déploiera automatiquement votre site à chaque push sur la branche principale
+- Design responsive
+- Animations avec Framer Motion
+- Formulaire de contact
+- Intégration Google Maps
+- Sections interactives
+- Navigation fluide
 
 ## Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-
 1. Fork le projet
-2. Créer une branche pour votre feature
-3. Commiter vos changements
-4. Pousser vers la branche
-5. Ouvrir une Pull Request
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Poussez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
 
 ## Licence
 
