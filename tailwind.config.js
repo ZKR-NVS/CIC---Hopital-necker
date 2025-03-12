@@ -33,6 +33,19 @@ module.exports = {
           900: '#0f172a',
         },
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          sm: '2rem',
+          lg: '4rem',
+          xl: '5rem',
+          '2xl': '6rem',
+        },
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
