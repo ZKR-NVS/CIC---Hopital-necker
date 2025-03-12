@@ -10,10 +10,6 @@ module.exports = {
       colors: {
         primary: '#0055A4',
         secondary: '#EF4135',
-        accent: '#FFFFFF',
-      },
-      fontFamily: {
-        sans: ['var(--font-inter)'],
       },
     },
   },
